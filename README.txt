@@ -1,0 +1,7 @@
+Latest version download:
+https://github.com/LilithRainbows/HabboAirFoxLinux/archive/refs/heads/main.zip
+
+Usage instructions:
+-Execute HabboLauncher.sh from Terminal (sh HabboLauncher.sh)
+-Wait for the update to complete
+-Enter the SSO ticket and press Enter
