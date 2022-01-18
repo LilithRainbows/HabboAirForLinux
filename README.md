@@ -1,2 +1,0 @@
-# HabboAirFoxLinux
-HabboAIR for Linux
