@@ -5,3 +5,5 @@ Usage instructions:
 -Execute HabboLauncher.sh from Terminal (sh HabboLauncher.sh)
 -Wait for the update to complete
 -Enter the SSO ticket and press Enter
+
+NOTE: ONLY X64 IS SUPPORTED
