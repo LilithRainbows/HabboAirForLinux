@@ -32,7 +32,7 @@ if test -f "$LocalClientVersionLoc"; then
 fi
 
 if [ "$WinAirClientVer" != "$LocalClientVersion" ]; then
-    echo ${GREEN}Downloading Client ...${NOCOLOR}
+    echo ${GREEN}Downloading client ...${NOCOLOR}
     wget $WinAirClientUrl -O HabboWin.zip
     echo ${GREEN}Extracting client ...${NOCOLOR}
     unzip -o HabboWin.zip -d "HabboClient" -x "Adobe AIR/*" "Habbo.exe"
@@ -42,5 +42,5 @@ if [ "$WinAirClientVer" != "$LocalClientVersion" ]; then
     chmod +x "HabboClient/Habbo"
 fi
 echo $WinAirClientVer > "$LocalClientVersionLoc"
-echo ${GREEN}Launching Habbo Client Version "$WinAirClientVer" ...${NOCOLOR}
+echo ${GREEN}Launching Habbo client version "$WinAirClientVer" ...${NOCOLOR}
 "HabboClient/Habbo"
