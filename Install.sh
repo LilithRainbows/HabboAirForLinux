@@ -21,7 +21,7 @@ if "$install"; then
 fi  
 
 HabboAirForLinuxAppPath=~/.local/share/applications/HabboAirForLinux
-rm -r $HabboAirForLinuxAppPath
+#rm -r $HabboAirForLinuxAppPath
 mkdir -p $HabboAirForLinuxAppPath
 wget https://github.com/LilithRainbows/HabboAirForLinux/raw/main/HabboAirLinuxPatch.zip -O $HabboAirForLinuxAppPath/HabboAirLinuxPatch.zip
 wget https://github.com/LilithRainbows/HabboAirForLinux/raw/main/HabboLauncher.sh -O $HabboAirForLinuxAppPath/HabboLauncher.sh
