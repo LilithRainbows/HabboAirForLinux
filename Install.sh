@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "$(cd "$(dirname "$0")" && pwd)" #Set current path to script path
+
 ARCH=`dpkg --print-architecture`
 if [ $ARCH != 'amd64' ]; then
 	echo "Wrong architecture, only x64 is supported!"
