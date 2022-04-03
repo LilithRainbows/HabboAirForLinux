@@ -55,4 +55,4 @@ fi
 echo $WinAirClientVer > "$LocalClientVersionLoc"
 
 echo "[Launching Habbo client version $WinAirClientVer]"
-nohup sh -c "'HabboClient/Habbo' ${LauncherFinalArg} &"
+nohup bash -c "'HabboClient/Habbo' ${LauncherFinalArg} &"
