@@ -1,8 +1,6 @@
 #!/bin/bash
 cd "$(cd "$(dirname "$0")" && pwd)" #Set current path to script path
-GREEN="\033[1;32m" #Green color
-NOCOLOR='\033[0m' # No color
-echo ${GREEN}"Checking dependencies ..."${NOCOLOR}
+echo "[Checking dependencies]"
 pkgs='unzip wget'
 install=false
 for pkg in $pkgs; do
@@ -15,7 +13,7 @@ done
 if "$install"; then
     sudo apt install $pkgs --assume-yes
 fi
-echo ${GREEN}Collecting client information ...${NOCOLOR}
+echo "[Collecting client information]"
 ClientUrls=$(wget https://habbo.com/gamedata/clienturls -q -O -)
 WinAirClientVer=$ClientUrls
 WinAirClientVer=${WinAirClientVer#*'"flash-windows-version":"'}
@@ -32,15 +30,15 @@ if test -f "$LocalClientVersionLoc"; then
 fi
 
 if [ "$WinAirClientVer" != "$LocalClientVersion" ]; then
-    echo ${GREEN}Downloading client ...${NOCOLOR}
+    echo "[Downloading client]"
     wget $WinAirClientUrl -O HabboWin.zip
-    echo ${GREEN}Extracting client ...${NOCOLOR}
+    echo "[Extracting client]"
     unzip -o HabboWin.zip -d "HabboClient" -x "Adobe AIR/*" "Habbo.exe"
     rm HabboWin.zip
-    echo ${GREEN}Patching client ...${NOCOLOR}
+    echo "[Patching client]"
     unzip -o HabboAirLinuxPatch.zip -d "HabboClient"
     chmod +x "HabboClient/Habbo"
 fi
 echo $WinAirClientVer > "$LocalClientVersionLoc"
-echo ${GREEN}Launching Habbo client version "$WinAirClientVer" ...${NOCOLOR}
+echo "[Launching Habbo client version $WinAirClientVer]"
 "HabboClient/Habbo"
