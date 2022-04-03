@@ -1,4 +1,5 @@
 #!/bin/bash
+
 cd "$(cd "$(dirname "$0")" && pwd)" #Set current path to script path
 
 LauncherArg=$1
