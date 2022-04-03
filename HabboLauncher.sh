@@ -13,7 +13,7 @@ for pkg in $pkgs; do
     fi
 done
 if "$install"; then
-    sudo apt install $pkgs
+    sudo apt install $pkgs --assume-yes
 fi
 echo ${GREEN}Collecting client information ...${NOCOLOR}
 ClientUrls=$(wget https://habbo.com/gamedata/clienturls -q -O -)
