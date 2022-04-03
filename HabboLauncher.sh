@@ -1,5 +1,19 @@
 #!/bin/bash
 cd "$(cd "$(dirname "$0")" && pwd)" #Set current path to script path
+
+LauncherArg=$1
+LauncherFinalArg=""
+
+if [[ "$LauncherArg" == *"token="* ]]; then
+    LauncherServer=$LauncherArg
+    LauncherServer=${LauncherServer#*'server='}
+    LauncherServer=${LauncherServer%%'&'*}
+    LauncherTicket=$LauncherArg
+    LauncherTicket=${LauncherTicket#*'token='}
+    LauncherTicket=${LauncherTicket%%'&'*}
+    LauncherFinalArg="-server $LauncherServer -ticket $LauncherTicket"
+fi
+
 echo "[Checking dependencies]"
 pkgs='unzip wget'
 install=false
@@ -41,4 +55,5 @@ if [ "$WinAirClientVer" != "$LocalClientVersion" ]; then
 fi
 echo $WinAirClientVer > "$LocalClientVersionLoc"
 echo "[Launching Habbo client version $WinAirClientVer]"
-"HabboClient/Habbo"
+echo "'HabboClient/Habbo' ${LauncherFinalArg}"
+nohup sh -c "'HabboClient/Habbo' ${LauncherFinalArg} &"
