@@ -27,6 +27,7 @@ done
 if "$install"; then
     sudo apt install $pkgs --assume-yes
 fi
+
 echo "[Collecting client information]"
 ClientUrls=$(wget https://habbo.com/gamedata/clienturls -q -O -)
 WinAirClientVer=$ClientUrls
@@ -35,14 +36,11 @@ WinAirClientVer=${WinAirClientVer%%'"'*}
 WinAirClientUrl=$ClientUrls
 WinAirClientUrl=${WinAirClientUrl#*'"flash-windows":"'}
 WinAirClientUrl=${WinAirClientUrl%%'"'*}
-
 LocalClientVersionLoc="HabboClient/VERSION.txt"
 LocalClientVersion="0"
-
 if test -f "$LocalClientVersionLoc"; then
     LocalClientVersion=$(cat "$LocalClientVersionLoc")
 fi
-
 if [ "$WinAirClientVer" != "$LocalClientVersion" ]; then
     echo "[Downloading client]"
     wget $WinAirClientUrl -O HabboWin.zip
@@ -54,6 +52,6 @@ if [ "$WinAirClientVer" != "$LocalClientVersion" ]; then
     chmod +x "HabboClient/Habbo"
 fi
 echo $WinAirClientVer > "$LocalClientVersionLoc"
+
 echo "[Launching Habbo client version $WinAirClientVer]"
-echo "'HabboClient/Habbo' ${LauncherFinalArg}"
 nohup sh -c "'HabboClient/Habbo' ${LauncherFinalArg} &"
