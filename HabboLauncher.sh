@@ -16,18 +16,32 @@ if [[ "$LauncherArg" == *"token="* ]]; then
 fi
 
 echo "[Checking dependencies]"
+current_linux=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
 pkgs='unzip wget'
-install=false
+install_type=0
 for pkg in $pkgs; do
-    status="$(dpkg-query -W --showformat='${db:Status-Status}' "$pkg" 2>&1)"
-    if [ ! $? = 0 ] || [ ! "$status" = installed ]; then
-        install=true
+    if [ $current_linux == "debian" ] || [ $current_linux == "ubuntu" ] || [ $current_linux == "linuxmint" ]; then
+        status=$(dpkg --list | grep "$pkg")
+        install_type=0
+    elif [ $current_linux == "arch" ]; then
+        status=$(pacman -Q | grep "$pkg")
+        install_type=1
+    else
+        echo="Distribution not recognized. Skipping..."
+        break
+    fi
+    if [ -z "$status" ]; then
+        case $install_type in
+        0)
+            sudo apt install $pkg -y
+            ;;
+        1)
+            sudo pacman -S $pkg --noconfirm
+            ;;
+        esac
         break
     fi
 done
-if "$install"; then
-    sudo apt install $pkgs --assume-yes
-fi
 
 echo "[Collecting client information]"
 ClientUrls=$(wget https://habbo.com/gamedata/clienturls -q -O -)
