@@ -9,7 +9,7 @@ if [ $ARCH != 'amd64' ]; then
 fi
 
 echo "[Checking dependencies]"
-if type dpkg &>/dev/null; then pkgs='tar unzip wget libnss3'; else pkgs='tar unzip wget nss'; fi
+if type dpkg &>/dev/null; then pkgs='xterm tar unzip wget libnss3'; else pkgs='xterm tar unzip wget nss'; fi
 for pkg in $pkgs; do
     if type dpkg &>/dev/null; then
         if [ -z "$(dpkg --list | grep "$pkg")" ]; then
