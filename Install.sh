@@ -9,7 +9,7 @@ if [ $ARCH != 'amd64' ]; then
 fi
 
 echo "[Checking dependencies]"
-if type dpkg &>/dev/null; then pkgs='unzip wget libnss3'; else pkgs='unzip wget nss'; fi
+if type dpkg &>/dev/null; then pkgs='tar unzip wget libnss3'; else pkgs='tar unzip wget nss'; fi
 for pkg in $pkgs; do
     if type dpkg &>/dev/null; then
         if [ -z "$(dpkg --list | grep "$pkg")" ]; then
@@ -24,13 +24,17 @@ done
 
 HabboAirForLinuxAppPath=~/.local/share/applications/HabboAirForLinux
 #rm -r $HabboAirForLinuxAppPath
-mkdir -p $HabboAirForLinuxAppPath
-mkdir -p ~/.icons
-wget https://github.com/LilithRainbows/HabboAirForLinux/raw/main/HabboAirLinuxPatch.zip -O $HabboAirForLinuxAppPath/HabboAirLinuxPatch.zip
-wget https://github.com/LilithRainbows/HabboAirForLinux/raw/main/HabboLauncher.sh -O $HabboAirForLinuxAppPath/HabboLauncher.sh
-wget https://github.com/LilithRainbows/HabboAirForLinux/raw/main/HabboAirForLinux.png -O ~/.icons/HabboAirForLinux.png
-wget https://github.com/LilithRainbows/HabboAirForLinux/raw/main/HabboAirForLinux.desktop -O $HabboAirForLinuxAppPath/../HabboAirForLinux.desktop
-chmod +x $HabboAirForLinuxAppPath/HabboLauncher.sh
+mkdir -vp $HabboAirForLinuxAppPath
+mkdir -vp ~/.icons
+wget -O HabboLauncher.tar.gz https://github.com/LilithRainbows/HabboAirForLinux/tarball/master
+tar -xvf HabboLauncher.tar.gz
+mv -v *LilithRainbows-HabboAirForLinux* HabboAirForLinux
+chown -vR $USER:$USER HabboAirForLinux # Use sudo if this don't work?
+mv -v HabboAirForLinux/HabboAirLinuxPatch.zip $HabboAirForLinuxAppPath
+mv -v HabboAirForLinux/HabboLauncher.sh $HabboAirForLinuxAppPath
+mv -v HabboAirForLinux/HabboAirForLinux.png ~/.icons
+mv -v HabboAirForLinux/HabboAirForLinux.desktop $HabboAirForLinuxAppPath/..
+chmod -v +x $HabboAirForLinuxAppPath/HabboLauncher.sh
 xdg-settings set default-url-scheme-handler habbo HabboAirForLinux.desktop
 
 echo "[Installation finished]"
