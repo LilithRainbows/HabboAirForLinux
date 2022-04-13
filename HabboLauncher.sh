@@ -15,20 +15,6 @@ if [[ "$LauncherArg" == *"token="* ]]; then
     LauncherFinalArg="-server $LauncherServer -ticket $LauncherTicket"
 fi
 
-echo "[Checking dependencies]"
-if type dpkg &>/dev/null; then pkgs='unzip wget libnss3'; else pkgs='unzip wget nss'; fi
-for pkg in $pkgs; do
-    if type dpkg &>/dev/null; then
-        if [ -z "$(dpkg --list | grep "$pkg")" ]; then
-            sudo apt install $pkg -y
-        fi
-    else
-        if [ -z "$(pacman -Q | grep "$pkg")" ]; then
-            sudo pacman -S $pkg --noconfirm
-        fi
-    fi
-done
-
 echo "[Collecting client information]"
 ClientUrls=$(wget https://habbo.com/gamedata/clienturls -q -O -)
 WinAirClientVer=$ClientUrls
