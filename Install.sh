@@ -9,29 +9,16 @@ if [ $ARCH != 'amd64' ]; then
 fi
 
 echo "[Checking dependencies]"
-current_linux=$(lsb_release -si | tr '[:upper:]' '[:lower:]')
 pkgs='unzip wget'
 for pkg in $pkgs; do
-    if [ $current_linux == "debian" ] || [ $current_linux == "ubuntu" ] || [ $current_linux == "linuxmint" ]; then
-        status=$(dpkg --list | grep "$pkg")
-        install_type=0
-    elif [ $current_linux == "arch" ]; then
-        status=$(pacman -Q | grep "$pkg")
-        install_type=1
-    else
-        echo="Distribution not recognized. Skipping..."
-        break
-    fi
-    if [ -z "$status" ]; then
-        case $install_type in
-        0)
+    if type dpkg &>/dev/null; then
+        if [ -z "$(dpkg --list | grep "$pkg")" ]; then
             sudo apt install $pkg -y
-            ;;
-        1)
+        fi
+    else
+        if [ -z "$(pacman -Q | grep "$pkg")" ]; then
             sudo pacman -S $pkg --noconfirm
-            ;;
-        esac
-        break
+        fi
     fi
 done
 
