@@ -25,6 +25,7 @@ done
 HabboAirForLinuxAppPath=~/.local/share/applications/HabboAirForLinux
 #rm -r $HabboAirForLinuxAppPath
 mkdir -p $HabboAirForLinuxAppPath
+mkdir -p ~/.icons
 wget https://github.com/LilithRainbows/HabboAirForLinux/raw/main/HabboAirLinuxPatch.zip -O $HabboAirForLinuxAppPath/HabboAirLinuxPatch.zip
 wget https://github.com/LilithRainbows/HabboAirForLinux/raw/main/HabboLauncher.sh -O $HabboAirForLinuxAppPath/HabboLauncher.sh
 wget https://github.com/LilithRainbows/HabboAirForLinux/raw/main/HabboAirForLinux.png -O ~/.icons/HabboAirForLinux.png
