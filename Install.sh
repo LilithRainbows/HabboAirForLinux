@@ -34,4 +34,4 @@ chmod +x $HabboAirForLinuxAppPath/HabboLauncher.sh
 xdg-settings set default-url-scheme-handler habbo HabboAirForLinux.desktop
 
 echo "[Installation finished]"
-echo "Now you can use the Habbo Launch button from the web."
+echo "Now you can use the HabboAirForLinux system shortcut or the Habbo Launch button from the web if your browser and system are compatible."
