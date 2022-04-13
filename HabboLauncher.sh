@@ -16,7 +16,7 @@ if [[ "$LauncherArg" == *"token="* ]]; then
 fi
 
 echo "[Checking dependencies]"
-pkgs='unzip wget libnss3'
+if type dpkg &>/dev/null; then pkgs='unzip wget libnss3'; else pkgs='unzip wget nss'; fi
 for pkg in $pkgs; do
     if type dpkg &>/dev/null; then
         if [ -z "$(dpkg --list | grep "$pkg")" ]; then
