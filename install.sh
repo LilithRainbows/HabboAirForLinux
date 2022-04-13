@@ -26,15 +26,17 @@ HabboAirForLinuxAppPath=~/.local/share/applications/HabboAirForLinux
 #rm -r $HabboAirForLinuxAppPath
 mkdir -vp $HabboAirForLinuxAppPath
 mkdir -vp ~/.icons
-wget -O HabboLauncher.tar.gz https://github.com/LilithRainbows/HabboAirForLinux/tarball/master
-tar -xvf HabboLauncher.tar.gz
-mv -v *LilithRainbows-HabboAirForLinux* HabboAirForLinux
+wget -O HabboAirForLinux.tar.gz https://github.com/LilithRainbows/HabboAirForLinux/tarball/master
+tar -xvf HabboAirForLinux.tar.gz
+mv -v *-HabboAirForLinux-* HabboAirForLinux
 chown -vR $USER:$USER HabboAirForLinux # Use sudo if this don't work?
 mv -v HabboAirForLinux/HabboAirLinuxPatch.zip $HabboAirForLinuxAppPath
 mv -v HabboAirForLinux/HabboLauncher.sh $HabboAirForLinuxAppPath
 mv -v HabboAirForLinux/HabboAirForLinux.png ~/.icons
 mv -v HabboAirForLinux/HabboAirForLinux.desktop $HabboAirForLinuxAppPath/..
 chmod -v +x $HabboAirForLinuxAppPath/HabboLauncher.sh
+rm -vr HabboAirForLinux
+rm -vr HabboAirForLinux.tar.gz
 xdg-settings set default-url-scheme-handler habbo HabboAirForLinux.desktop
 
 echo "[Installation finished]"
