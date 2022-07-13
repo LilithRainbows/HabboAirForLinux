@@ -1,43 +1,79 @@
-#!/bin/bash
+#!/bin/sh
 
-cd "$(cd "$(dirname "$0")" && pwd)" #Set current path to script path
+# Colours
+RED="\e[1;31m"
+GREEN="\e[1;32m"
+YELLOW="\e[1;33m"
+BLUE="\e[1;34m"
+PURPLE="\e[1;35m"
+CYAN="\e[1;36m"
+RESET_COLOUR="\e[0m"
 
-ARCH=`dpkg --print-architecture`
-if [ $ARCH != 'amd64' ]; then
-	echo "Wrong architecture, only x64 is supported!"
-    exit
+cd "$(cd "$(dirname "$0")" && pwd)" # Set current path to script path
+
+printf "$BLUE""[Checking architecture]""$RESET_COLOUR""\n"
+printf "\n"
+ARCH="$(uname -m)"
+if [ $ARCH != 'x86_64' ]; then
+	printf "$RED""ERROR: Wrong architecture, only 64-Bit architectures are supported!""$RESET_COLOUR""\n"
+    exit 1
+else
+    printf "$YELLOW""64-Bit architecture detected!""$RESET_COLOUR""\n"
 fi
+printf "\n"
 
-echo "[Checking dependencies]"
-if type dpkg &>/dev/null; then pkgs='xterm tar unzip wget libnss3'; else pkgs='xterm tar unzip wget nss'; fi
-for pkg in $pkgs; do
+printf "$BLUE""[Checking dependencies]""$RESET_COLOUR""\n"
+if type dpkg &>/dev/null; then
+    packages='xterm tar unzip wget libnss3'
+else
+    packages='xterm tar unzip wget nss'
+fi
+printf "\n"
+
+for package in $packages; do
     if type dpkg &>/dev/null; then
-        if [ -z "$(dpkg --list | grep "$pkg")" ]; then
-            sudo apt install $pkg -y
+        if [ -z "$(dpkg --list | grep "$package")" ]; then
+            if ! sudo apt install $package -y 2&>/dev/null; then
+                printf "$RED""ERROR: ""$PURPLE""$package""$RED"" failed to install! Closing...""$RESET_COLOUR""\n"
+                exit 1
+            else
+                printf "$GREEN""$PURPLE""$package""$GREEN"" has been installed!""$RESET_COLOUR""\n"
+            fi
+        else
+            printf "$PURPLE""$package""$RESET_COLOUR"" has already been satisfied!\n"
         fi
     else
-        if [ -z "$(pacman -Q | grep "$pkg")" ]; then
-            sudo pacman -S $pkg --noconfirm
+        if [ -z "$(pacman -Q | grep "$package")" ]; then
+            if ! sudo pacman -S --needed --noconfirm $package 2&>/dev/null; then
+                printf "$RED""ERROR: ""$PURPLE""$package""$RED"" failed to install! Closing...""$RESET_COLOUR""\n"
+                exit 1
+            else
+                printf "$GREEN""$PURPLE""$package""$GREEN"" has been installed!""$RESET_COLOUR""\n"
+            fi
+        else
+            printf "$PURPLE""$package""$RESET_COLOUR"" has already been satisfied!\n"
         fi
     fi
 done
+printf "\n"
 
-HabboAirForLinuxAppPath=~/.local/share/applications/HabboAirForLinux
+HabboAirForLinuxAppPath=$HOME/.local/share/applications/HabboAirForLinux
 #rm -r $HabboAirForLinuxAppPath
 mkdir -vp $HabboAirForLinuxAppPath
-mkdir -vp ~/.icons
+mkdir -vp $HOME/.icons
 wget -O HabboAirForLinux.tar.gz https://github.com/LilithRainbows/HabboAirForLinux/tarball/master
 tar -xvf HabboAirForLinux.tar.gz
 mv -v *-HabboAirForLinux-* HabboAirForLinux
 chown -vR $USER:$USER HabboAirForLinux # Use sudo if this don't work?
 mv -v HabboAirForLinux/HabboAirLinuxPatch.zip $HabboAirForLinuxAppPath
 mv -v HabboAirForLinux/HabboLauncher.sh $HabboAirForLinuxAppPath
-mv -v HabboAirForLinux/HabboAirForLinux.png ~/.icons
+mv -v HabboAirForLinux/HabboAirForLinux.png $HOME/.icons
 mv -v HabboAirForLinux/HabboAirForLinux.desktop $HabboAirForLinuxAppPath/..
 chmod -v +x $HabboAirForLinuxAppPath/HabboLauncher.sh
 rm -vr HabboAirForLinux
 rm -vr HabboAirForLinux.tar.gz
 xdg-settings set default-url-scheme-handler habbo HabboAirForLinux.desktop
 
-echo "[Installation finished]"
-echo "Now you can use the HabboAirForLinux system shortcut or the Habbo Launch button from the web if your browser and system are compatible."
+printf "$GREEN""[Installation finished]""$RESET_COLOUR""\n"
+printf "\n"
+printf "$GREEN""\tNow you can use the "$PURPLE"HabboAirForLinux"$GREEN" system shortcut\n\t\tor the "$PURPLE"Habbo Launch"$GREEN" button from the web\n\t     if your browser and system are compatible.""$RESET_COLOUR""\n"
