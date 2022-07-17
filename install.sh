@@ -23,10 +23,25 @@ fi
 printf "\n"
 
 printf "$BLUE""[Checking dependencies]""$RESET_COLOUR""\n"
+read -p "Install XTerm? [Y/n]" install_xterm
+if [ "$install_xterm" == "" ]; then
+    install_xterm="Yes"
+fi
+case $install_xterm in
+    "Y"|"y"|"Yes"|"yes")
+        packages="xterm"
+        ;;
+    "N"|"n"|"No"|"no")
+        packages=""
+        ;;
+    *)
+        printf "$RED""ERROR: This is not an option! Considering as yes...""$RESET_COLOUR""\n"
+        packages="xterm"
+esac
 if type dpkg &>/dev/null; then
-    packages='xterm tar unzip wget libnss3'
+    packages="tar unzip wget libnss3 $packages"
 else
-    packages='xterm tar unzip wget nss'
+    packages="tar unzip wget nss $packages"
 fi
 printf "\n"
 
