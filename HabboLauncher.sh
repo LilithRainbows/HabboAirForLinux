@@ -1,6 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 
-cd "$(cd "$(dirname "$0")" && pwd)" #Set current path to script path
+# Colours
+RED="\e[1;31m"
+GREEN="\e[1;32m"
+YELLOW="\e[1;33m"
+BLUE="\e[1;34m"
+PURPLE="\e[1;35m"
+CYAN="\e[1;36m"
+RESET_COLOUR="\e[0m"
+
+cd "$(cd "$(dirname "$0")" && pwd)" # Set current path to script path
 
 LauncherArg=$1
 LauncherFinalArg=""
@@ -15,44 +24,42 @@ if [[ "$LauncherArg" == *"token="* ]]; then
     LauncherFinalArg="-server $LauncherServer -ticket $LauncherTicket"
 fi
 
-echo "[Checking dependencies]"
-pkgs='unzip wget libnss3'
-for pkg in $pkgs; do
-    if type dpkg &>/dev/null; then
-        if [ -z "$(dpkg --list | grep "$pkg")" ]; then
-            sudo apt install $pkg -y
-        fi
-    else
-        if [ -z "$(pacman -Q | grep "$pkg")" ]; then
-            sudo pacman -S $pkg --noconfirm
-        fi
-    fi
-done
-
-echo "[Collecting client information]"
+printf "$BLUE""[Collecting client information]""$RESET_COLOUR""\n"
+printf "\n"
 ClientUrls=$(wget https://habbo.com/gamedata/clienturls -q -O -)
-WinAirClientVer=$ClientUrls
-WinAirClientVer=${WinAirClientVer#*'"flash-windows-version":"'}
-WinAirClientVer=${WinAirClientVer%%'"'*}
-WinAirClientUrl=$ClientUrls
-WinAirClientUrl=${WinAirClientUrl#*'"flash-windows":"'}
-WinAirClientUrl=${WinAirClientUrl%%'"'*}
-LocalClientVersionLoc="HabboClient/VERSION.txt"
-LocalClientVersion="0"
-if test -f "$LocalClientVersionLoc"; then
-    LocalClientVersion=$(cat "$LocalClientVersionLoc")
+if [ -z "$ClientUrls" ]; then
+    printf "$RED""ERROR: Something happened and the request could not be received. Check the internet connection. Closing...""$RESET_COLOUR""\n"
+    exit 1
+else
+    WinAirClientVer=$ClientUrls
+    WinAirClientVer=${WinAirClientVer#*'"flash-windows-version":"'}
+    WinAirClientVer=${WinAirClientVer%%'"'*}
+    WinAirClientUrl=$ClientUrls
+    WinAirClientUrl=${WinAirClientUrl#*'"flash-windows":"'}
+    WinAirClientUrl=${WinAirClientUrl%%'"'*}
+    LocalClientVersionLoc="HabboClient/VERSION.txt"
+    LocalClientVersion="0"
+    if test -f "$LocalClientVersionLoc"; then
+        LocalClientVersion=$(cat "$LocalClientVersionLoc")
+    fi
+    if [ "$WinAirClientVer" != "$LocalClientVersion" ]; then
+        printf "$BLUE""[Downloading client]""$RESET_COLOUR""\n"
+        printf "\n"
+        wget $WinAirClientUrl -O HabboWin.zip
+        printf "\n"
+        printf "$BLUE""[Extracting client]""$RESET_COLOUR""\n"
+        printf "\n"
+        unzip -o HabboWin.zip -d "HabboClient" -x "Adobe AIR/*" "Habbo.exe"
+        rm HabboWin.zip
+        printf "\n"
+        printf "$BLUE""[Patching client]""$RESET_COLOUR""\n"
+        printf "\n"
+        unzip -o HabboAirLinuxPatch.zip -d "HabboClient"
+        chmod +x "HabboClient/Habbo"
+        printf "\n"
+    fi
+    printf "$WinAirClientVer\n" > "$LocalClientVersionLoc"
 fi
-if [ "$WinAirClientVer" != "$LocalClientVersion" ]; then
-    echo "[Downloading client]"
-    wget $WinAirClientUrl -O HabboWin.zip
-    echo "[Extracting client]"
-    unzip -o HabboWin.zip -d "HabboClient" -x "Adobe AIR/*" "Habbo.exe"
-    rm HabboWin.zip
-    echo "[Patching client]"
-    unzip -o HabboAirLinuxPatch.zip -d "HabboClient"
-    chmod +x "HabboClient/Habbo"
-fi
-echo $WinAirClientVer > "$LocalClientVersionLoc"
 
-echo "[Launching Habbo client version $WinAirClientVer]"
-nohup bash -c "'HabboClient/Habbo' ${LauncherFinalArg} &"
+printf "$GREEN""[Launching Habbo client version $WinAirClientVer]""$RESET_COLOUR""\n"
+nohup sh -c "'HabboClient/Habbo' ${LauncherFinalArg} &"
