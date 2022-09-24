@@ -21,6 +21,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/LilithRainbows/HabboAirFor
 sh -c "$(fetch -o - https://raw.githubusercontent.com/LilithRainbows/HabboAirForLinux/master/install.sh)"
 ```
 
+Force Launch:
+```sh
+cd ~/.local/share/applications/HabboAirForLinux && sh HabboLauncher.sh
+```
+
 # Warning
 
 The HabboAirForLinux supports 64-bits processors at the moment.
