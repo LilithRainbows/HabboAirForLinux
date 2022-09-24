@@ -8,13 +8,13 @@ Some distributions have their own default packages. Choose the package according
 
 ### Automatic install
 
-- curl:
-```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/LilithRainbows/HabboAirForLinux/master/install.sh)"
-```
 - wget:
 ```sh
 sh -c "$(wget -O- https://raw.githubusercontent.com/LilithRainbows/HabboAirForLinux/master/install.sh)"
+```
+- curl:
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/LilithRainbows/HabboAirForLinux/master/install.sh)"
 ```
 - fetch:
 ```sh
