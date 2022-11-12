@@ -85,6 +85,7 @@ function CheckClientUpdate() {
         NewXmlClientVersion=${NewXmlClientVersion%%"</versionLabel>"*}
         SafeXmlClientApplication=$(cat "HabboClient/application.xml")
         SafeXmlClientApplication=${SafeXmlClientApplication//XML_CLIENT_VERSION/$NewXmlClientVersion}
+        rm -f "HabboClient/application.xml"
         echo "$SafeXmlClientApplication">"HabboClient/META-INF/AIR/application.xml"
         echo $RemoteClientVersion > "$LocalClientVersionFile"
     else
