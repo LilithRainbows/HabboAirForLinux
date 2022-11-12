@@ -1,31 +1,15 @@
-# HabboAirForLinux
-
-HabboAIR native client implementation for Linux with auto-updater.
-
 # Instructions
+### Automatic installation
 
-Some distributions have their own default packages. Choose the package according which is installed in your system.
-
-### Automatic install
-
-- wget:
+Open a Terminal window and paste this command:
 ```sh
-sh -c "$(wget -O- https://raw.githubusercontent.com/LilithRainbows/HabboAirForLinux/master/install.sh)"
-```
-- curl:
-```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/LilithRainbows/HabboAirForLinux/master/install.sh)"
-```
-- fetch:
-```sh
-sh -c "$(fetch -o - https://raw.githubusercontent.com/LilithRainbows/HabboAirForLinux/master/install.sh)"
+bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/main/Install.sh)"
 ```
 
-Force Launch:
-```sh
-cd ~/.local/share/applications/HabboAirForLinux && sh HabboLauncher.sh
-```
+### Manual installation
 
-# Warning
+-Download repository as zip clicking [here](https://github.com/LilithRainbows/HabboAirForLinux/archive/refs/heads/main.zip)<br>
+-Extract whole zip folder and open a Terminal window<br>
+-Type ```bash Install.sh``` if you want to install the Launcher or ```bash HabboLauncher.sh``` to run it directly
 
-The HabboAirForLinux supports 64-bits processors at the moment.
+#### Currently only x64 systems are supported.
