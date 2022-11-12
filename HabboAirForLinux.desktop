@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=HabboAirForLinux Launcher
-Exec=sh -c "~/.local/share/applications/HabboAirForLinux/HabboLauncher.sh %u"
-StartupNotify=false
-Terminal=true
-Icon=HabboAirForLinux.png
-Categories=Network;Game;
-MimeType=x-scheme-handler/habbo;
