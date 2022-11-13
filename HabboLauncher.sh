@@ -29,7 +29,7 @@ function CheckSystemDependencies() {
         #Arch based distro
         SystemDeps='unzip wget nss'
         for SystemDep in $SystemDeps; do
-            if ! pacman -Qs '$SystemDep' >/dev/null 2>&1; then
+            if ! pacman -Qs $SystemDep >/dev/null 2>&1; then
                 echo "Trying to install: $SystemDep"
                 sudo pacman -q --noconfirm -S $SystemDep
             fi
