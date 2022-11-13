@@ -5,6 +5,10 @@
 ```sh
 bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/main/Install.sh)"
 ```
+If for some reason the Habbo Launcher shortcut doesn't work on your system you can manually run it with this command:
+```sh
+bash $HOME/.local/share/applications/HabboAirForLinux/HabboLauncher.sh
+```
 
 ### Manual installation
 
