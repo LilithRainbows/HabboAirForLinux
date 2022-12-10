@@ -2,7 +2,7 @@
 Type=Application
 Name=Habbo Launcher
 Exec=bash -c "$HOME/.local/share/applications/HabboAirForLinux/HabboLauncher.sh %u"
-StartupNotify=true
+StartupNotify=false
 Terminal=true
 Icon=HabboAirForLinux.png
 Categories=Game;
