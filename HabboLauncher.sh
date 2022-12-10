@@ -104,8 +104,8 @@ function LaunchClient() {
         LauncherArguments="-server $LauncherServer -ticket $LauncherTicket"
     fi
     echo "[Launching Habbo Client]"
-    nohup bash -c "'HabboClient/Habbo' ${LauncherArguments}" </dev/null >/dev/null 2>&1 &
-    disown
+    nohup bash -c "'HabboClient/Habbo' ${LauncherArguments} &" >/dev/null 2>&1;
+    exit 0
 }
 
 #Main script
