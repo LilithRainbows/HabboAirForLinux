@@ -22,3 +22,4 @@ bash $HOME/.local/share/applications/HabboAirForLinux/HabboLauncher.sh
 ```HabboLauncher.sh``` (To run Habbo Launcher without installing it)
 
 #### Currently only x64 systems are supported.
+### For arm64 support (beta) take a look at [Beta Releases](https://github.com/LilithRainbows/HabboAirForLinux/releases/tag/beta)
