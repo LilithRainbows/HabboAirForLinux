@@ -101,6 +101,7 @@ function LaunchClient() {
         LauncherTicket=$LauncherArguments
         LauncherTicket=${LauncherTicket#*'token='}
         LauncherTicket=${LauncherTicket%%'&'*}
+        LauncherTicket=$(echo "$LauncherTicket" | cut -d '.' -f 1,2)
         LauncherArguments="-server $LauncherServer -ticket $LauncherTicket"
     fi
     echo "[Launching Habbo Client]"
