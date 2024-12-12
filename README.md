@@ -3,7 +3,7 @@
 
 -Open a Terminal window and paste this command:
 ```sh
-bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/main/Install.sh)"
+bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/gabo/Install.sh)"
 ```
 If for some reason the Habbo Launcher shortcut doesn't work on your system you can manually run it with this command:
 ```sh
@@ -19,7 +19,7 @@ HabboLauncher
 Also you can install Habbo Air Plus only by running this command:
 
 ```sh
-bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/main/Install.sh)" --plus
+bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/gabo/Install.sh)" --plus
 ```
 
 or if you have instaled the launcher
