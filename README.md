@@ -19,7 +19,7 @@ HabboLauncher
 Also you can install Habbo Air Plus only by running this command:
 
 ```sh
-bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/gabo/Install.sh) --plus"
+bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/gabo/Install.sh)" -- --plus
 ```
 
 or if you have instaled the launcher
