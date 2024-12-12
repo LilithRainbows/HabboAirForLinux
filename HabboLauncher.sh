@@ -452,15 +452,19 @@ function CheckPlusUpdate() { #to fetch plus versions
 if [ -e $HabboLinuxAppPath/plus_flag ]; then
 	date_check="$(date "+%Y-%m-%d")"
 	if [ -e "$HabboLinuxAppPath/plus_installed" ]; then
-  		date_commit="$(tail -n 1 $HabboLinuxAppPath/plus_installed)" 
+		date_commit="$(tail -n 1 $HabboLinuxAppPath/plus_installed)" 
 		actual_commit="$(head -n 1 $HabboLinuxAppPath/plus_installed)"
-		if  [[ "$date_check" != "$date_commit" ]]; then
+	else
+		date_commit="9999-99-99"
+		touch "$HabboLinuxAppPath/plus_installed"
+	fi
+	if  [[ "$date_check" != "$date_commit" ]]; then
 			if [ "$Locale" != default ]; then
         	    			echo -e "\e[36m$(sed -n '29p' "$HabboLinuxAppPath/locale_launcher/$Locale")\e[0m"
     				else
     					echo -e "\e[36m[Checking Habbo Air Plus updates]\e[0m"
     			fi 
-	fi		 
+			 
 		if [ "$Downloader" = "wget" ]; then	
 			commit_version="$(wget -q -O - "https://api.github.com/repos/LilithRainbows/HabboAirPlus/commits?per_page=1" | grep sha | head -n 1 | cut -d"\"" -f4 )"
 			if  [[ "$actual_commit" != "$commit_version" ]]; then
@@ -506,9 +510,9 @@ if [ -e $HabboLinuxAppPath/plus_flag ]; then
 			fi
 		fi
 			date "+%Y-%m-%d" >> "$HabboLinuxAppPath/plus_installed"
- 		
-	
-fi
+
+	fi
+#fi
 			rm "$HabboLinuxAppPath/first_download"  &> /dev/null && rm "$HabboLinuxAppPath/classic_installed" &> /dev/null
 fi
 }
