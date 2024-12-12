@@ -57,4 +57,18 @@ HabboLauncher --remove
 ```Install.sh``` (To install Habbo Launcher)<br>
 ```HabboLauncher.sh``` (To run Habbo Launcher without installing it)
 
-#### Currently only x64 and arm64 systems are supported.
+### Docker files
+
+x64 and arm64 architectures with glib-c are primarily supported, but we have dockers files for x64 and arm64 systems based on musl lib-c.
+
+For classic Habbo, run:
+
+```
+bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/gabo/DockerHabboAirForLinux.sh)"
+```
+
+For Plus, run:
+
+```
+bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/gabo/DockerHabboAirPlus.sh)"
+```
