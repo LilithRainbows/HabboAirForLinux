@@ -138,9 +138,9 @@ function InstallHabboLauncher() {
             	echo "Downloading: ${HabboLinuxDepsFilenames[$HabboLinuxDepIndex]}"
             fi
 	    		if [ "$Downloader" = "wget" ]; then #if wget is installed.
-	    			wget -q "https://github.com/LilithRainbows/HabboAirForLinux/raw/main/${HabboLinuxDepsFilenames[$HabboLinuxDepIndex]}" -O "${HabboLinuxDepsDestinations[$HabboLinuxDepIndex]}/${HabboLinuxDepsFilenames[$HabboLinuxDepIndex]}"
+	    			wget -q "https://github.com/LilithRainbows/HabboAirForLinux/raw/refs/heads/gabo/${HabboLinuxDepsFilenames[$HabboLinuxDepIndex]}" -O "${HabboLinuxDepsDestinations[$HabboLinuxDepIndex]}/${HabboLinuxDepsFilenames[$HabboLinuxDepIndex]}"
 	    		elif [ "$Downloader" = "curl" ]; then #if only curl is present.
-	    			curl -sL "https://github.com/LilithRainbows/HabboAirForLinux/raw/main/${HabboLinuxDepsFilenames[$HabboLinuxDepIndex]}" -o "${HabboLinuxDepsDestinations[$HabboLinuxDepIndex]}/${HabboLinuxDepsFilenames[$HabboLinuxDepIndex]}"
+	    			curl -sL "https://github.com/LilithRainbows/HabboAirForLinux/raw/refs/heads/gabo/${HabboLinuxDepsFilenames[$HabboLinuxDepIndex]}" -o "${HabboLinuxDepsDestinations[$HabboLinuxDepIndex]}/${HabboLinuxDepsFilenames[$HabboLinuxDepIndex]}"
 	    		fi 
 	    fi
     done

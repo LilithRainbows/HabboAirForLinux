@@ -1,5 +1,5 @@
 #!/bin/sh
-Container='HabboLauncher/1'
+Container='HabboLauncherPlus/1'
 
 createshortcutsandfiles() {
 		if ! [ -d $HOME/.local/share/applications ]; then
@@ -42,7 +42,7 @@ generatedockerfile() {
 	echo 'RUN apt-get -qqqq install -y unzip libnss3 gtk+2.0 xorg xterm wget' >> dockerfile
 	echo 'ENV HOME=/app/home' >> dockerfile
 	echo 'RUN echo [Installing Habbo Launcher]' >> dockerfile
-	echo 'RUN bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/main/Install.sh)"'  >> dockerfile
+	echo 'RUN bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/gabo/Install.sh)" -- plus'  >> dockerfile
 	echo 'RUN ["/app/home/.local/share/applications/HabboAirForLinux/HabboLauncher.sh"]'  >> dockerfile
 	echo 'RUN echo "#!/bin/sh" > /app/home/update.sh && echo "/app/home/.local/share/applications/HabboAirForLinux/HabboLauncher.sh" >> /app/home/update.sh'  >> dockerfile
 	echo 'RUN chmod +x /app/home/update.sh'  >> dockerfile
@@ -53,16 +53,16 @@ generatedockerfile() {
 cd $(cd "$(dirname "$0")" && pwd) #Change to script directory
 if ! [ -z "$(command -v docker)" ] && ! [ -z "$(command -v xhost)" ]; then #Detect if dockerfile and docker container is on the machine. If can't find files, dowload the dockerfile or create the docker container.
 	if sudo docker images | grep -q ^$Container; then
-	        sudo xhost +local:`docker inspect --format='{{ .Config.Hostname }}' $(docker run -d HabboLauncher/1)`
+	        sudo xhost +local:`docker inspect --format='{{ .Config.Hostname }}' $(docker run -d HabboLauncherPlus/1)`
 		createshortcutsandfiles
-		sudo docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY HabboLauncher/1 
+		sudo docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY HabboLauncherPlus/1 
 	else
 		generatedockerfile 
-		sudo docker build -t HabboLauncher/1  .	
-		sudo xhost +local:`docker inspect --format='{{ .Config.Hostname }}' $(docker run -d HabboLauncher/1)`
+		sudo docker build -t HabboLauncherPlus/1  .	
+		sudo xhost +local:`docker inspect --format='{{ .Config.Hostname }}' $(docker run -d HabboLauncherPlus/1)`
 		rm dockerfile
 		createshortcutsandfiles
-		sudo docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY HabboLauncher/1 
+		sudo docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY HabboLauncherPlus/1 
 	fi
 else
  	echo "Please install docker and xhost for install Habbo Launcher on a docker container"

@@ -454,7 +454,11 @@ if [ -e $HabboLinuxAppPath/plus_flag ]; then
 	if [ -e "$HabboLinuxAppPath/plus_installed" ]; then
 		date_commit="$(tail -n 1 $HabboLinuxAppPath/plus_installed)" 
 		actual_commit="$(head -n 1 $HabboLinuxAppPath/plus_installed)"
-		if  [[ "$date_check" != "$date_commit" ]]; then
+	else
+		date_commit="9999-99-99"
+		touch "$HabboLinuxAppPath/plus_installed"
+	fi
+	if  [[ "$date_check" != "$date_commit" ]]; then
 			if [ "$Locale" != default ]; then
         	    			echo -e "\e[36m$(sed -n '29p' "$HabboLinuxAppPath/locale_launcher/$Locale")\e[0m"
     				else
@@ -508,7 +512,7 @@ if [ -e $HabboLinuxAppPath/plus_flag ]; then
 			date "+%Y-%m-%d" >> "$HabboLinuxAppPath/plus_installed"
 
 	fi
-fi
+#fi
 			rm "$HabboLinuxAppPath/first_download"  &> /dev/null && rm "$HabboLinuxAppPath/classic_installed" &> /dev/null
 fi
 }
