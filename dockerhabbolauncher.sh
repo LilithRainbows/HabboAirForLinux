@@ -42,7 +42,7 @@ generatedockerfile() {
 	echo 'RUN apt-get -qqqq install -y unzip libnss3 gtk+2.0 xorg xterm wget' >> dockerfile
 	echo 'ENV HOME=/app/home' >> dockerfile
 	echo 'RUN echo [Installing Habbo Launcher]' >> dockerfile
-	echo 'RUN bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/main/Install.sh)"'  >> dockerfile
+	echo 'RUN bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/gabo/Install.sh)"'  >> dockerfile
 	echo 'RUN ["/app/home/.local/share/applications/HabboAirForLinux/HabboLauncher.sh"]'  >> dockerfile
 	echo 'RUN echo "#!/bin/sh" > /app/home/update.sh && echo "/app/home/.local/share/applications/HabboAirForLinux/HabboLauncher.sh" >> /app/home/update.sh'  >> dockerfile
 	echo 'RUN chmod +x /app/home/update.sh'  >> dockerfile
