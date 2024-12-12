@@ -1,4 +1,21 @@
-# Instructions
+# HabboLauncher script for Habbo Air For Linux and Habbo Air Plus
+
+This Bash script is designed to fetch and patch various versions of Habbo to ensure compatibility within a Linux environment.
+
+## Supporting
+
+* Debian-based distros
+* Ubuntu
+* Fedora / Redhat
+* Open-SUSE
+* Arch-based distros
+* Void Linux (Glib-C)
+* Slackware (Needs testing)
+* Gentoo (Needs testing)
+* Alpine (Docker)
+* Void Linux with Musl lib-c (Docker)
+
+## Instructions
 ### Automatic installation
 
 -Open a Terminal window and paste this command:
