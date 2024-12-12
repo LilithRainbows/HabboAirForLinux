@@ -10,6 +10,20 @@ If for some reason the Habbo Launcher shortcut doesn't work on your system you c
 bash $HOME/.local/share/applications/HabboAirForLinux/HabboLauncher.sh
 ```
 
+or if you generates a symlink:
+
+```
+HabboLauncher
+```
+
+Also you can install Habbo Air Plus only by running this command:
+
+```sh
+bash -c "$(wget -q -O- https://github.com/LilithRainbows/HabboAirForLinux/raw/main/Install.sh)" --plus
+```
+
+
+
 ### Manual installation
 
 -Download repository as zip clicking [here](https://github.com/LilithRainbows/HabboAirForLinux/archive/refs/heads/main.zip)<br>
@@ -21,5 +35,4 @@ bash $HOME/.local/share/applications/HabboAirForLinux/HabboLauncher.sh
 ```Install.sh``` (To install Habbo Launcher)<br>
 ```HabboLauncher.sh``` (To run Habbo Launcher without installing it)
 
-#### Currently only x64 systems are supported.
-### For arm64 support (beta) take a look at [Beta Releases](https://github.com/LilithRainbows/HabboAirForLinux/releases/tag/beta)
+#### Currently only x64 and arm64 systems are supported.

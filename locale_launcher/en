@@ -1,0 +1,32 @@
+English locale loaded.
+Wrong architecture, only x86_64 is supported!
+Please use one argument.
+HabboLauncher is a script for Habbo Client, that works as wrapper to download and patch the Habbo Client version for Windows for making it work on GNU/Linux.
+Arguments:
+  --classic: Forces the download of the official HabboClient and patches it"
+  --plus: Patch the client to get the LilithRainbow's Habbo Air Plus client"
+  --remove: Removes the script, the client, and the desktop icons."
+Successfully removed HabboLauncher.
+Glibc recognized
+No glibc based linux recognized.
+[Preparing patch for Habbo Air Plus]
+Wget is installed. Procedding.
+Curl is installed. Procedding.
+Can't download. Wget or Curl is not installed.
+Can't find patch or can't download it. Wget or Curl is not installed.
+[Checking system dependencies]
+Trying to install:
+Unzip is installed. Procedding.
+Can't extract. Unzip is not installed.
+Error: could not detect dependencies! Please, try to install gtk2, nss, unzip and wget.
+[Launching Habbo Client]
+[Checking for client update]
+Wget/curl error.
+Downloading client.
+Extracting client.
+Patching client.
+Already using the latest version!
+[Checking Habbo Air Plus updates]
+Updating Habbo Air Plus
+Found x86_64 Linux.
+Found arm64 Linux.

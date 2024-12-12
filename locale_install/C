@@ -1,0 +1,25 @@
+Localized to english.
+[Checking System Architecture]
+Wrong architecture, only x86_64 is supported!
+Found x86_64 Linux.
+Gnu libc is found.
+No glibc based linux.
+Wget is installed. Procedding.
+Curl is installed. Procedding.
+The script wouldn't download files. Wget or Curl is not installed.
+Unzip is installed. Procedding.
+The script wouldn't extract the files. Unzip is not installed.
+[Installing Habbo Launcher]
+Copying:
+Downloading:
+[Creating desktop shortcut]
+Error: unable to create desktop shortcut.
+[Registering habbo protocol]
+Error: unable to register habbo protocol
+[Preparing patch for Habbo Air Plus]
+[Installation finished]
+Now you can use the Habbo Launcher system shortcut or the Habbo Launch button from the web if your browser and system are compatible.
+Musl libc is found. HabboAirForLinux isn't compatible with this library. You can try to install it in a container.
+Do you like to add a link to HabboLauncher in PATH to launcher it from terminal? (yes/no)
+Now you can launch "HabboLauncher" typing it on the terminal
+Found arm64 Linux.

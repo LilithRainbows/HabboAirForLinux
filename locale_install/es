@@ -1,0 +1,25 @@
+Localizado a español.
+[Comprobando Arquitectura del Sistema]
+Arquitectura incorrecta. ¡El programa solo soporta x86_64!
+¡La arquitectura es x86_64!
+Se encuentra la librería Gnu libc en el sistema.
+Se detecta que el sistema no se basa en GNU libc.
+Se detecta que está instalado wget. Se procede.
+Se detecta que está instalado curl. Se procede.
+El script no podrá hacer descargas, ya que ni wget ni curl, están instalados.
+Se detecta instalado unzip. Se procede.
+El script no podría descomprimir archivos, ya que unzip no está instalado.
+[Instalando el Launcher de Habbo]
+Copiando:
+Descargando:
+[Creando el acceso directo]
+Error: No se pudo crear el acceso directo.
+[Registrando el protocolo URL de Habbo]
+Error: No se pudo registrar el protocolo de Habbo.
+[Preparando el parche para Habbo Air Plus]
+[Instalación finalizada]
+Ahora puedes usar el acceso directo al Launcher de Habbo desde el botón de la web, si tu sistema y navegador son compatibles.
+Se encontró Musl libc. HabboAirForLinux no es directamente compatible con esta librería. Podrías probar instalar en contenedor.
+¿Te gustaría añadir un link a HabboLauncher en PATH para lanzarlo desde el terminal? (yes/no)
+Ahora puedes lanzar "HabboLauncher" escribiéndolo en el terminal.
+¡La arquitectura es arm64!
